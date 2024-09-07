@@ -3,7 +3,7 @@ import time
 import subprocess
 
 # Tiempo en segundos para cambiar de pestaña
-TIME = 20
+TIEMPO = 20
 
 # URLs de las pestañas
 URL_1 = "https://www.example.com"
@@ -52,6 +52,6 @@ def switch_tabs(window_id):
 try:
     while True:
         switch_tabs(window_id)
-        time.sleep(TIME)
+        time.sleep(TIEMPO)
 except KeyboardInterrupt:
     print("Script detenido.")
