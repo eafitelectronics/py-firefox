@@ -1,4 +1,4 @@
-# Python + Firefox
+# Python + Firefox en Raspberry Pi
 
 Este programa permite cambiar de pestaña cada 20 segundos en Firefox y usando una Raspberry Pi 4 o superior.
 
