@@ -4,14 +4,14 @@ Este programa permite cambiar de pestaña cada 20 segundos en Firefox y usando u
 
 ## Requisitos
 
-- Raspberry Pi 4 o superior
-- Python 3
-- Firefox
-- xdotools
+- [Raspberry Pi 4 o superior](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)
+- [Python 3.11](https://www.python.org/downloads/)
+- [Firefox](https://www.mozilla.org/es-ES/firefox/new/)
+- [xdotool](https://atareao.es/software/utilidades/xdotool-simulando-raton-y-teclado/)
 
 ## Instalación
 
-1. Instalar xdotools
+1. Instalar xdotool
 
    ```bash
    sudo apt update
