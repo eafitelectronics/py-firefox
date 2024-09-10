@@ -9,6 +9,7 @@ TIEMPO = 20
 URL_1 = "https://www.example.com"
 URL_2 = "https://www.example.org"
 
+
 # Función para verificar la conexión a Internet
 def check_internet_connection(url="http://www.google.com", timeout=5):
     try:
@@ -17,6 +18,7 @@ def check_internet_connection(url="http://www.google.com", timeout=5):
         return response.status_code == 200
     except requests.ConnectionError:
         return False
+
 
 # Espera hasta que haya conexión a Internet
 while not check_internet_connection():
@@ -36,7 +38,13 @@ subprocess.Popen(["firefox", "--new-instance", URL_1, URL_2])
 time.sleep(5)
 
 # Identificar la ventana de Firefox
-window_id = subprocess.check_output(["xdotool", "search", "--onlyvisible", "--class", "firefox"]).decode().strip()
+window_id = (
+    subprocess.check_output(
+        ["xdotool", "search", "--onlyvisible", "--class", "firefox"]
+    )
+    .decode()
+    .strip()
+)
 
 # Activar la ventana, y activar el modo pantalla completa con F11 en un único comando
 subprocess.Popen(["xdotool", "windowactivate", window_id, "key", "F11"])
@@ -44,9 +52,22 @@ subprocess.Popen(["xdotool", "windowactivate", window_id, "key", "F11"])
 # Esperar un momento para asegurarse de que el modo pantalla completa se haya activado
 time.sleep(2)
 
+# Obtener la resolución de la pantalla para mover el cursor a la esquina inferior derecha
+screen_width = (
+    subprocess.check_output(["xdotool", "getdisplaygeometry"]).decode().split()[0]
+)
+screen_height = (
+    subprocess.check_output(["xdotool", "getdisplaygeometry"]).decode().split()[1]
+)
+
+# Mover el cursor a la esquina inferior derecha
+subprocess.Popen(["xdotool", "mousemove", screen_width, screen_height])
+
+
 # Función para cambiar de pestaña
 def switch_tabs(window_id):
     subprocess.Popen(["xdotool", "windowactivate", window_id, "key", "ctrl+Tab"])
+
 
 # Cambiar de pestaña cada 20 segundos
 try:
