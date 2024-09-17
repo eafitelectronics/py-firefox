@@ -3,11 +3,12 @@ import time
 import subprocess
 
 # Tiempo en segundos para cambiar de pestaña
-TIEMPO = 20
+TIEMPO_1 = 60
+TIEMPO_2 = 5
 
 # URLs de las pestañas
-URL_1 = "https://www.example.com"
-URL_2 = "https://www.example.org"
+URL_1 = "https://www.google.com"
+URL_2 = "https://www.eafit.edu.co"
 
 
 # Función para verificar la conexión a Internet
@@ -33,9 +34,10 @@ time.sleep(2)
 
 # Comando para abrir Firefox en modo privado con un perfil específico
 subprocess.Popen(["firefox", "--new-instance", URL_1, URL_2])
+#subprocess.Popen(["firefox", "--new-instance", URL_1])
 
 # Esperar un tiempo para asegurarse de que Firefox se haya abierto
-time.sleep(5)
+time.sleep(10)
 
 # Identificar la ventana de Firefox
 window_id = (
@@ -50,7 +52,7 @@ window_id = (
 subprocess.Popen(["xdotool", "windowactivate", window_id, "key", "F11"])
 
 # Esperar un momento para asegurarse de que el modo pantalla completa se haya activado
-time.sleep(2)
+time.sleep(4)
 
 # Obtener la resolución de la pantalla para mover el cursor a la esquina inferior derecha
 screen_width = (
@@ -68,11 +70,18 @@ subprocess.Popen(["xdotool", "mousemove", screen_width, screen_height])
 def switch_tabs(window_id):
     subprocess.Popen(["xdotool", "windowactivate", window_id, "key", "ctrl+Tab"])
 
+def activate_tab(window_id, tab_id):
+    subprocess.Popen(["xdotool", "windowactivate", window_id, "key", f"ctrl+{tab_id}"])
 
 # Cambiar de pestaña cada 20 segundos
 try:
     while True:
-        switch_tabs(window_id)
-        time.sleep(TIEMPO)
+        #switch_tabs(window_id)
+        activate_tab(window_id, 1)
+        subprocess.Popen(["xdotool", "windowactivate", window_id, "key", "F11"])
+        time.sleep(TIEMPO_1)
+        activate_tab(window_id, 2)
+        subprocess.Popen(["xdotool", "windowactivate", window_id, "key", "F11"])
+        time.sleep(TIEMPO_2)
 except KeyboardInterrupt:
     print("Script detenido.")
