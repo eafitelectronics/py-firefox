@@ -37,7 +37,7 @@ subprocess.Popen(["firefox", "--new-instance", URL_1, URL_2])
 #subprocess.Popen(["firefox", "--new-instance", URL_1])
 
 # Esperar un tiempo para asegurarse de que Firefox se haya abierto
-time.sleep(10)
+time.sleep(15)
 
 # Identificar la ventana de Firefox
 window_id = (
@@ -78,10 +78,10 @@ try:
     while True:
         #switch_tabs(window_id)
         activate_tab(window_id, 1)
-        subprocess.Popen(["xdotool", "windowactivate", window_id, "key", "F11"])
+        # subprocess.Popen(["xdotool", "windowactivate", window_id, "key", "F11"])
         time.sleep(TIEMPO_1)
         activate_tab(window_id, 2)
-        subprocess.Popen(["xdotool", "windowactivate", window_id, "key", "F11"])
+        # subprocess.Popen(["xdotool", "windowactivate", window_id, "key", "F11"])
         time.sleep(TIEMPO_2)
 except KeyboardInterrupt:
     print("Script detenido.")
