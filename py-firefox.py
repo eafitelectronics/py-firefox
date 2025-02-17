@@ -71,7 +71,7 @@ def switch_tabs(window_id):
     subprocess.Popen(["xdotool", "windowactivate", window_id, "key", "ctrl+Tab"])
 
 def activate_tab(window_id, tab_id):
-    subprocess.Popen(["xdotool", "windowactivate", window_id, "key", f"ctrl+{tab_id}"])
+    subprocess.Popen(["xdotool", "windowactivate", window_id, "key", f"alt+{tab_id}"])
 
 # Cambiar de pestaña cada 20 segundos
 try:
